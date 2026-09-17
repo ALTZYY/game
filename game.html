@@ -5,95 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Clicker Simpel</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            user-select: none;
-            /* Mencegah teks ter-highlight saat diklik cepat */
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        .game-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 320px;
-        }
-
-        .stats {
-            margin-bottom: 20px;
-        }
-
-        .stats h1 {
-            font-size: 40px;
-            margin: 10px 0;
-            color: #2c3e50;
-        }
-
-        .stats p {
-            color: #7f8c8d;
-            margin: 5px 0;
-        }
-
-        .btn-click {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 20px 40px;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: transform 0.05s, background-color 0.2s;
-            width: 100%;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-        }
-
-        .btn-click:active {
-            transform: scale(0.95);
-            background-color: #2980b9;
-        }
-
-        .upgrade-section {
-            border-top: 2px solid #ecf0f1;
-            padding-top: 15px;
-        }
-
-        .btn-upgrade {
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.2s, opacity 0.2s;
-        }
-
-        .btn-upgrade:disabled {
-            background-color: #bdc3c7;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-
-        .btn-upgrade:not(:disabled):active {
-            transform: scale(0.98);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -116,51 +28,7 @@
             </button>
         </div>
     </div>
-
-    <script>
-        // State Game
-        let score = 0;
-        let clickPower = 1;
-        let upgradeCost = 10;
-
-        // Element DOM
-        const scoreEl = document.getElementById('score');
-        const clickPowerEl = document.getElementById('click-power');
-        const upgradeCostEl = document.getElementById('upgrade-cost');
-        const clickBtn = document.getElementById('click-btn');
-        const upgradeBtn = document.getElementById('upgrade-btn');
-
-        // Fungsi Pembaruan Tampilan UI (Responsif)
-        function updateUI() {
-            scoreEl.textContent = score;
-            clickPowerEl.textContent = clickPower;
-            upgradeCostEl.textContent = upgradeCost;
-
-            // Tombol upgrade otomatis langsung aktif/nonaktif tanpa lag
-            upgradeBtn.disabled = score < upgradeCost;
-        }
-
-        // Action Klik Utama
-        clickBtn.addEventListener('click', function (e) {
-            e.preventDefault(); // Mencegah behaviou delay/double tap bawaan
-            score += clickPower;
-            updateUI();
-        });
-
-        // Action Upgrade (Direct & Instant Check)
-        upgradeBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            // Validasi skor
-            if (score >= upgradeCost) {
-                score -= upgradeCost;           // Kurangi skor
-                clickPower += 1;                // Tambah kekuatan klik
-                upgradeCost = Math.floor(upgradeCost * 1.5); // Naikkan harga upgrade
-
-                updateUI(); // Langsung update tampilan saat itu juga
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 
 </body>
 
